@@ -30,7 +30,7 @@ func TestDefaultClaimMapperIsStandard(t *testing.T) {
 	})
 	qt.Assert(t, qt.IsNil(err))
 	qt.Check(t, qt.Equals(info.ID, "s1"))
-	qt.Check(t, qt.Equals(info.Email, "alice@mycorp.com"))
+	qt.Check(t, qt.Equals(info.Contacts[contract.ChannelEmail][0].Address, "alice@mycorp.com"))
 	qt.Check(t, qt.Equals(info.Claims["hd"], "mycorp.com"))
 }
 

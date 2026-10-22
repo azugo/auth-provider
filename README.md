@@ -21,6 +21,7 @@ auth:
       redirect_url: https://app.example/auth/external/corp/callback
       config:
         tenant: organizations
+        tenants: 11111111-2222-3333-4444-555555555555
     - name: gmail
       driver: google
       client_id: ...
@@ -34,7 +35,7 @@ auth:
 
 | Package | Driver name | Notes |
 |---|---|---|
-| `azure` | `azure` | Azure AD / Microsoft Entra ID. Optional `tenant` config option (default `organizations`) and `tenants` (comma-separated directory IDs allowed to sign in through `common`/`organizations`); supports RP-initiated (federated) logout. |
+| `azure` | `azure` | Azure AD / Microsoft Entra ID. Optional `tenant` config option (default `organizations`); `tenants` (comma-separated directory IDs, or `*` for any) is required with `common`/`organizations`. The email counts as verified only when the `xms_edov` optional claim is true, so add `xms_edov` to the app registration's ID token claims. Supports RP-initiated (federated) logout. |
 | `google` | `google` | Google Workspace. Optional `hd` config option to restrict sign-in to one Workspace domain; no RP-initiated logout (Google has no `end_session_endpoint`). |
 
 Both drivers are thin wrappers over the generic OIDC authorization-code core in
